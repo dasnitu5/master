@@ -4,9 +4,9 @@ pipeline {
     stages {
        	stage('jira-installation') {
 		steps {
-                sh '''
-                mkdir C:/Atlassian
-                mkdir C:/Atlassian/home
+                bat '''
+                md C:/Atlassian1
+                mkdir C:/Atlassian1/home
                 '''
                 
            }
