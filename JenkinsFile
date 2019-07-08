@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+	
+    stages {
+       	stage('jira-installation') {
+		steps {
+                sh '''
+                mkdir C:/Atlassian
+                mkdir C:/Atlassian/home
+                '''
+                
+           }
+           }
+           }
+           }
