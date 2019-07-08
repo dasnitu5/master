@@ -4,7 +4,7 @@ pipeline {
     stages {
        	stage('jira-installation') {
 		steps {
-                sh 'pwd'
+                sh 'mkdir C:/qwerty'
                 
            }
            }
