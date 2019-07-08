@@ -5,8 +5,8 @@ pipeline {
        	stage('jira-installation') {
 		steps {
                 bat '''
-                md C://Atlassian1
-                mkdir C://Atlassian1//home
+                md C:\test
+                mkdir C:\test\test2
                 '''
                 
            }
