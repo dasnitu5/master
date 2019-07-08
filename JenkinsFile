@@ -4,10 +4,7 @@ pipeline {
     stages {
        	stage('jira-installation') {
 		steps {
-                sh '''
-		pwd
-		cd C:\
-                '''
+                bat ' md C:/testy '
                 
            }
            }
