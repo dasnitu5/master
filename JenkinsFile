@@ -4,10 +4,7 @@ pipeline {
     stages {
        	stage('jira-installation') {
 		steps {
-                sh '''
-		cd /c
-		mkdir C:/qwerty
-		'''
+               powershell 'new-item c:\dir2 -itemtype directory'
                 
            }
            }
