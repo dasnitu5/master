@@ -9,7 +9,7 @@ pipeline {
 			$C_port=8100
 			(Get-Content $path)`
 			-replace '(<Server port)', ('$S_port')`
-			-replace '(<Connector port)', ('$C_port')`|Set-Content $path
+			-replace '(<Connector port)', ('$C_port')|Set-Content $path
 			'''
 			
 			}
