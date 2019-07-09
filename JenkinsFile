@@ -5,18 +5,11 @@ pipeline {
 		steps {
             powershell '''
 $path="C:/Atlassian/atlassian-jira-software-8.2.1-standalone/conf/server.xml"
-$Connector_port="<Connector port="8080" relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"
-                   maxThreads="150" minSpareThreads="25" connectionTimeout="20000" enableLookups="false"
-                   maxHttpHeaderSize="8192" protocol="HTTP/1.1" useBodyEncodingForURI="true" redirectPort="8443"
-                   acceptCount="100" disableUploadTimeout="true" bindOnInit="false"/>"
-$change_port="<Connector port="8100" relaxedPathChars="[]|" relaxedQueryChars="[]|{}^&#x5c;&#x60;&quot;&lt;&gt;"
-                   maxThreads="150" minSpareThreads="25" connectionTimeout="20000" enableLookups="false"
-                   maxHttpHeaderSize="8192" protocol="HTTP/1.1" useBodyEncodingForURI="true" redirectPort="8443"
-                   acceptCount="100" disableUploadTimeout="true" bindOnInit="false"/>""
-		   
+
+		  Copy-Item -Path $path -Destination C:/Atlassian/atlassian-jira-software-8.2.1-standalone
 			(Get-Content $path)`
 			-replace '(<Server port="8005" shutdown="SHUTDOWN">)', '(<Server port="8015" shutdown="SHUTDOWN">)'`
-			-replace '$Connector_port', '$change_port'|Set-Content $path
+			-replace '(<Connector_port="8080")', '(<Connector_port="8100")'|Set-Content $path
 			'''
 			
 			}
