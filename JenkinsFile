@@ -1,4 +1,4 @@
-ppipelineipeline {
+pipeline {
     agent any
 	stages{
 	stage('jira-installation') {
