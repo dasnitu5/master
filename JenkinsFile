@@ -1,19 +1,40 @@
 pipeline {
     agent any
-	stages{
+	environment {
+                JIRA_HOME = 'C:/Atlassian/home'
+				CATALINA_HOME = 'C:/Atlassian/atlassian-jira-software-8.2.1-standalone'
+                }
+stages {
+	
 	stage('jira-installation') {
 		steps {
-            powershell '''
-$path="C:/Atlassian/atlassian-jira-software-8.2.1-standalone/conf/server.xml"
-
-		  
+                powershell'''
+                new-item C:/Atlassian -itemtype directory 
+                new-item C:/Atlassian/home -itemtype directory
+		      Expand-Archive -LiteralPath C:/jira-8.2.1.zip -DestinationPath C:/Atlassian 
+		   
+                '''
+            }
+        }
+		
+		stage('port-changing') {
+		steps {
+		
+		powershell '''
+			Copy-Item -Path $path -Destination C:/Atlassian/atlassian-jira-software-8.2.1-standalone
+			$path="C:/Atlassian/atlassian-jira-software-8.2.1-standalone/conf/server.xml"
 			(Get-Content $path)`
 			-replace'<Server port="8005" shutdown="SHUTDOWN">', '<Server port="8015" shutdown="SHUTDOWN">'`
 			-replace'<Connector port="8080"', '<Connector port="8100"'|Set-Content $path
 
 			'''
-			
-			}
-			}
-			}
-			}
+		}
+		}
+       	
+        stage('launch-jira') {
+            steps {
+                bat 'C:\\Atlassian\\atlassian-jira-software-8.2.1-standalone\\bin\\start-jira.bat'
+            }
+		}
+	}
+}
