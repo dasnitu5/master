@@ -2,7 +2,8 @@ pipeline {
     agent any
 	environment {
                 JIRA_HOME = 'C:/Atlassian/home'
-				CATALINA_HOME = 'C:/Atlassian/atlassian-jira-software-8.2.1-standalone'
+		JAVA_HOME = 'C:\Program Files\Java\jdk-11.0.3'
+		CATALINA_HOME = 'C:/Atlassian/atlassian-jira-software-8.2.1-standalone'
                 }
 stages {
 	
@@ -21,8 +22,8 @@ stages {
 		steps {
 		
 		powershell '''
-			Copy-Item -Path $path -Destination C:/Atlassian/atlassian-jira-software-8.2.1-standalone
 			$path="C:/Atlassian/atlassian-jira-software-8.2.1-standalone/conf/server.xml"
+			Copy-Item -Path $path -Destination C:/Atlassian/atlassian-jira-software-8.2.1-standalone
 			(Get-Content $path)`
 			-replace'<Server port="8005" shutdown="SHUTDOWN">', '<Server port="8015" shutdown="SHUTDOWN">'`
 			-replace'<Connector port="8080"', '<Connector port="8100"'|Set-Content $path
