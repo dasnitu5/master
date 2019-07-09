@@ -4,8 +4,7 @@ pipeline {
     stages {
        	stage('jira-installation') {
 		steps {
-              sh 
-                'mkdir C:/Atlass'
+              sh ' mkdir C:/Atlass '
                 
            }
            }
