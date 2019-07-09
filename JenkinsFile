@@ -9,7 +9,7 @@ pipeline {
                 powershell'''
                 new-item C:/Atlassian -itemtype directory 
                 new-item C:/Atlassian/home -itemtype directory
-		Expand-Archive -LiteralPath //10.87.1.186/apps/Applications/IBM Rational/Jira_Automation/atlassian-jira-software-8.2.1.zip -DestinationPath C:/Atlassian
+		 Expand-Archive -LiteralPath C:\jira-8.2.1.zip -DestinationPath C:/Atlassian 
                 '''
             }
         }
