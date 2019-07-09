@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    stages{
 	stage('jira-installation') {
 		steps {
             powershell '''
@@ -11,6 +12,7 @@ pipeline {
 			-replace '(<Connector port)', ('$C_port')`|Set-Content $path
 			'''
 			
+			}
 			}
 			}
 			}
