@@ -5,7 +5,7 @@ pipeline {
        	
         stage('launch-jira') {
             steps {
-                bat 'C:\\Atlassian\\atlassian-jira-software-8.2.1-standalone\\binstart-jira.bat'
+                bat 'C:\\Atlassian\\atlassian-jira-software-8.2.1-standalone\\bin\\start-jira.bat'
             }
 		}
 	}
