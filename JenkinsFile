@@ -1,12 +1,16 @@
 pipeline {
     agent any
-	
-    stages {
-       	
-        stage('launch-jira') {
-            steps {
-                bat 'C:\\Atlassian\\atlassian-jira-software-8.2.1-standalone\\bin\\start-jira.bat'
-            }
-		}
-	}
-}
+	stage('jira-installation') {
+		steps {
+            powershell '''
+			$path="C:/Atlassian/atlassian-jira-software-8.2.1-standalone/conf/server.xml"
+			$S_port=8005
+			$C_port=8100
+			(Get-Content $path)`
+			-replace '(<Server port)', ('$S_port')`
+			-replace '(<Connector port)', ('$C_port')`|Set-Content $path
+			'''
+			
+			}
+			}
+			}
