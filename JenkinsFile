@@ -2,9 +2,9 @@ pipeline {
     agent any
 	environment {
                 JIRA_HOME = 'C:/Atlassian/home'
-		JAVA_HOME = 'C:/Progra~1/Java/jdk-11.0.3'
-		JRE_HOME = 'C:/Progra~1/Java/jdk-11.0.3'
-		CATALINA_HOME = 'C:/Atlassian'
+		JAVA_HOME = 'C:/Progra~1/Java/jdk1.8.0_211'
+		JRE_HOME = 'C:/Progra~1/Java/jdk1.8.0_211/jre'
+		CATALINA_HOME = 'C:/Atlassian/jira'
                 }
 stages {
 	
@@ -13,7 +13,7 @@ stages {
                 powershell'''
                 new-item C:/Atlassian -itemtype directory 
                 new-item C:/Atlassian/home -itemtype directory
-		      Expand-Archive -LiteralPath C:/jira-8.2.1.zip -DestinationPath C:/Atlassian 
+		      Expand-Archive -LiteralPath C:/jira.zip -DestinationPath C:/Atlassian 
 		   
                 '''
             }
