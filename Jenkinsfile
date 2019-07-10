@@ -12,7 +12,7 @@ pipeline {
                 sh '''
                 mkdir C:/Atlassian
                 mkdir C:/Atlassian/home
-				unzip //10.87.1.186/apps/Applications/IBM Rational/Jira_Automation/atlassian-jira-software-8.2.1.zip -d C:/Atlassian
+		cp C:/shared/jira C:/Atlassian	
                 '''
             }
         }
