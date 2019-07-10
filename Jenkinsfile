@@ -12,7 +12,7 @@ pipeline {
                 sh '''
                 mkdir C:/Atlassian
                 mkdir C:/Atlassian/home
-		cp C:/shared/jira C:/Atlassian	
+		cp -r C:/shared/jira C:/Atlassian	
                 '''
             }
         }
