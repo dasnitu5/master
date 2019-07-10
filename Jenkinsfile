@@ -5,8 +5,8 @@ pipeline {
     environment {
 		JIRA_HOME= 'C:/Atlassian/home'
 	    	CATALINA_HOME= 'C:/Atlassian/jira'
-	    	JAVA_HOME = 'C:/java/jdk1.8'
-                JRE_HOME = 'C:/java/jdk1.8/jre'
+	    	JAVA_HOME = 'C:/Program Files/Java/jdk1.8.0_211'
+                JRE_HOME = 'C:/Program Files/Java/jdk1.8.0_211/jre'
         }
 
     stages {
