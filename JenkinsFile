@@ -10,7 +10,7 @@ stages {
 	
 	stage('jira-installation') {
 		steps {
-                powershell'''
+                powershell '''
                 new-item C:/Atlassian -itemtype directory 
                 new-item C:/Atlassian/home -itemtype directory
 		Copy-Item C:/shared/jira -Destination C:/Atlassian 
