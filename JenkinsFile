@@ -13,7 +13,8 @@ stages {
                 powershell'''
                 new-item C:/Atlassian -itemtype directory 
                 new-item C:/Atlassian/home -itemtype directory
-		      Expand-Archive -LiteralPath C:/jira.zip -DestinationPath C:/Atlassian 
+		Copy-Item C:/shared/jira -Destination C:/Atlassian 
+		      
 		   
                 '''
             }
