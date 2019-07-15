@@ -36,7 +36,7 @@ stages {
        	
         stage('launch-jira') {
             steps {
-                bat 'C:\\Atlassian\\atlassian-jira-software-8.2.1-standalone\\bin\\start-jira.bat'
+                bat 'C:\\Atlassian\\atlassian-jira-software-8.2.1-standalone\\bin\\service.bat install JIRA'
             }
 		}
 	}
