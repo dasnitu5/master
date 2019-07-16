@@ -1,24 +1,44 @@
 pipeline {
     agent any
 	environment {
-        
+                JIRA_HOME = 'C:/Atlassian/home'
 		JAVA_HOME = 'C:/Program Files/Java/jdk-11.0.3'
 		JRE_HOME =  'C:/Program Files/Java/jdk-11.0.3'
-		
+		CATALINA_HOME = 'C:/Atlassian/atlassian-jira-software-8.2.1-standalone'
                 }
 stages {
 	
 	stage('jira-installation') {
 		steps {
                 powershell '''
-                cd "//10.87.1.186/apps/Applications/IBM Rational/Jira_Automation"
-				.\atlassian-jira-software-8.1.0-x64.exe /S 
+                new-item C:/Atlassian -itemtype directory 
+                new-item C:/Atlassian/home -itemtype directory
+                $weggiePath="//10.87.1.186/apps/Applications/IBM Rational/Jira_Automation/atlassian-jira-software-8.2.1.zip"
+		Expand-Archive -LiteralPath $weggiePath  -DestinationPath C:/Atlassian 
+		      
 		   
                 '''
             }
         }
 		
+		stage('port-changing') {
+		steps {
 		
-        
+		powershell '''
+			$path="C:/Atlassian/atlassian-jira-software-8.2.1-standalone/conf/server.xml"
+			Copy-Item -Path $path -Destination C:/Atlassian/atlassian-jira-software-8.2.1-standalone
+			(Get-Content $path)`
+			-replace'<Server port="8005" shutdown="SHUTDOWN">', '<Server port="8015" shutdown="SHUTDOWN">'`
+			-replace'<Connector port="8080"', '<Connector port="8100"'|Set-Content $path
+
+			'''
+		}
+		}
+       	
+        stage('launch-jira') {
+            steps {
+                bat 'C:\\Atlassian\\atlassian-jira-software-8.2.1-standalone\\bin\\start-jira.bat'
+            }
+		}
 	}
 }
